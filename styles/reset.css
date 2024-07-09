@@ -1,0 +1,39 @@
+/* HTML초기화용 */
+* {box-sizing: border-box;}
+body,html,
+h1,h2,h3,h4,h5,h6,fieldset,input,button,select,textarea,
+p,ul,ol,li,dl,dt,dd,table,tr,td,th,thead,tbody,tfoot,
+div,header,nav,aside,article,section,footer,figure,
+address,blockquote,video,iframe,hr,
+span,em,strong,q,a,sub,sup,details,figcaption,summary,time,s,del,code,mark,img {
+    /* font-size:1.0rem; */
+    font-family: 'Noto Sans KR', sans-serif;/* 가장 근접한 글꼴 */
+    font-weight:normal;
+    font-style:normal;
+    line-height:1.5;/* 보통사이트는 행간 1.0씀 */ margin:0; padding:0;
+    font-size: 1.0em;
+    color: #fff;
+}
+a {color: black; text-decoration:none; color: #fff;}
+ul,ol,li {list-style:none;}
+table, tr, td, th {border-collapse: collapse;}
+th {text-align:left;}
+fieldset {border: 0;}
+.skip {display: none;}
+input, button, label {cursor:pointer;}
+/* font-awesome 전용속성값 */
+.fa {
+    font-weight: 600;
+    font-family: 
+        'Font Awesome 5 Free',
+        'Font Awesome 5 Brands', 
+        'Font Awesome 5 Solid';
+}
+/* 스크롤바 꾸미기 */
+body::-webkit-scrollbar {
+    background: #333;
+    width: 2px; height: 10px;/* h. 가로스크롤 생길때높이 */
+}
+body::-webkit-scrollbar-thumb {
+    background: #ff0;
+}
