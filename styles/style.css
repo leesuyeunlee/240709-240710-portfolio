@@ -65,11 +65,11 @@ nav a {
     background: rgb(255,255,255,0.4);
     padding: 20px; border-radius: 15px;
     height: max-content;
-    width: calc(100% - 220px);
+    width: calc(100% - 220px);/* 사진넓이뺀나머지 */
     display: grid;
     grid-template-areas: 
-    'a b'
-    'c c';
+        'a b'
+        'c c';
 } /* 그리드,플랙스는 부모에 */
 .profile .txt .list:nth-child(1){grid-area: a;}
 .profile .txt .list:nth-child(2){grid-area: b;}
@@ -83,8 +83,85 @@ nav a {
 .profile .txt .list p{line-height: 2.2;}
 .profile .txt .list p em{font-weight: 600;}
 .profile .txt .list p span{color: #555;}
-/* 3.프로젝트 */
+/* 3. 프로젝트 */
 .project {
     padding: 100px 0;
     background: linear-gradient(180deg, #301dfd,#b2bbff,#301dfd);
+}
+/* 3-1. 앱디자인 */
+.project .app {
+    display: flex;
+}
+.project .app .thum {}
+.project .app .thum img {width: 100%;}
+.project .app .app_info {}
+/* 3-2. 웹 디자안 */
+.project .web{position: relative;} /* 화살표버튼 안으로 들어오게하는거 , swiper 클래스 대상의 안에 작성했을 땐 swiper가 absolute를 잡는 relative 기본내장으로 별도 설정은 안해도 되지만 밖에 작성했을 땐 밖 위치 기준으로 그 부모에게 relative 설정을 따로 해줘야 한다*/
+.project .web .swiper{max-width: 1000px;} /* 화살표버튼 안으로 들어오게하는거 */
+.project .web .swiper-slide {display: flex;}
+.project .web div[class^=swiper-button] {color: aqua;}
+/* 3-3. sns */
+.project .sns {max-width:1920px;}/* 다른아이템은 화면중앙맞춰져있지만 sns아이템은 화면풀로잡기위해 */
+.project .sns .swiper-wrapper {transition-timing-function: linear;}/* 일정속도설정(2) */
+.project .sns .swiper-slide{align-self: center;}/* 스와이퍼슬라이드는 기본적으로 flex 내장 그러므로 교차축 센터를 설정해준다.(1)*/
+.project .sns .swiper-slide img{width:100%}
+/* 3-4 banner */
+.project .banner {display: flex; flex-flow: row wrap;}
+.project .banner p {width: calc(50% - 2.5px);} /* 배너사이 안띄우면 width: 50%; */
+.project .banner p:nth-child(odd) {margin-right: 5px;} /* 배너사이 띄우기 */
+.project .banner p img {width: 100%;}
+/* 3-5 detail */
+.project .detail p{}
+.project .detail .swiper {height: 500px;} /* 스와이퍼에 overflow:hideen 내장 되어있어 높이만큼 잘려서보인다. */
+.project .detail .swiper-slide a{
+    position: relative; /* absoluet의 부모에 기준(relative)을  넣어줌(2) */
+    display: block; height: 500px; /* a는 css에서 인라인이라 블럭속성을 넣어준다.설정한 높이도넣어준다 */
+} 
+.project .detail .swiper-slide a::before{/* 그라이데이션을 위한 가상선택자 */
+    content: ''; display: block;
+    height: 100px; width: 100%;
+    background:linear-gradient(360deg, #301dfd, transparent);
+    position: absolute; left: 0; bottom: 0;/* 위에그라데이션을 겹치기위해(1) */z-index: 999;
+}
+.project .detail .swiper-slide img {width: 100%;}
+/* 상세 팝업 */
+.big_bg {
+    position: fixed; left: 0; top: 0; z-index: 999;/* position:리렉티브 제외한 나머지는 위치를 00 써줌 */
+    width: 100%; height: 100vh;
+    background: rgba(0,0,0,0.6);
+}
+.big_bg .img{
+    max-width: 50vw; margin: 30px auto;
+    height: 90vh; overflow-y: auto; overflow-x: hidden; /* overflow-y는 스크롤 */
+}
+.big_bg .img img{width: 100%;}
+/* 스크롤바 꾸미기 */
+.big_bg .img::-webkit-scrollbar {
+    background: #333;
+    width: 20px; height: 20px;/* h. 가로스크롤 생길때높이 */
+}
+.big_bg .img::-webkit-scrollbar-thumb {
+    background: #ff0;
+}
+
+/* 반응형웹 1200, 800, 600 */
+@media screen and (max-width:1200px){
+    h1 {font-size:8rem;}
+}
+@media screen and (max-width:800px){
+    h1 {font-size:5rem;}
+    .profile .txt {
+        grid-template-areas: 
+        'a '
+        'b'
+        'c';
+    }
+}
+@media screen and (max-width:600px){
+    h1 {font-size:3rem;}
+    .profile {height: max-content;} /* 내용따라 늘어남 */
+    .profile .photo {display: none;}
+    .profile .txt {width: 100%;}
+    .project .app {flex-flow:column;}
+    .project .web .swiper-slide {flex-flow:column;}
 }
